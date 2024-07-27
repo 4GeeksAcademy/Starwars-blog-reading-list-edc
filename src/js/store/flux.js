@@ -1,20 +1,50 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	let apiUrl = "https://www.swapi.tech/api/"
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			characters: [],
+			planets: [],
+			vehicles: [],
+			favorites: [],
+			
 		},
 		actions: {
+			getCharacters: () => {
+				fetch(apiUrl + "people")
+				.then(resp => resp.json())
+				.then(data => setStore({characters:data.results}))
+				.catch(error => console.log(error))
+			},
+			getPlanets: () => {
+				fetch(apiUrl + "planets")
+				.then(resp => resp.json())
+				.then(data => setStore({planets:data.results}))
+				.catch(error => console.log(error))
+			},
+			getStarships: () => {
+				fetch(apiUrl + "starships")
+				.then(resp => resp.json())
+				.then(data => setStore({starships:data.results}))
+				.catch(error => console.log(error))
+			},
+			addFavorites: (name, uid, type) => {
+				const store = getStore();
+				const newFavorite = { name, uid, type }; // Include a type ('person', 'planet', 'starship')
+				const newFavorites = [...store.favorites, newFavorite];
+				setStore({ favorites: newFavorites });
+			  },
+			  getFavorites: (favItem) => {
+				const store = getStore();
+				store.favorites.push(favItem);
+				setStore(store);
+			  },
+			  removeFavorites: (name) => {
+				const store = getStore();
+				const newFavorites = store.favorites.filter(
+				  (favorite) => favorite.name !== name
+				);
+				setStore({ favorites: newFavorites });
+			  },
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

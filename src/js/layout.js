@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
+import Characterdetails from "./views/characterdetails";
+import Vehicledetails from "./views/vehicledetails";
+import Planetdetails from "./views/planetdetails";
 
 import { Home } from "./views/home";
 import { Demo } from "./views/demo";
@@ -26,6 +29,9 @@ const Layout = () => {
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
+						<Route path="/character/:id" element={<Characterdetails />} />
+						<Route path="/starships/:id" element={<Vehicledetails />} />
+						<Route path="/planets/:id" element={<Planetdetails />} />
 					</Routes>
 					<Footer />
 				</ScrollToTop>
