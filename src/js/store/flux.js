@@ -29,22 +29,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			addFavorites: (name, uid, type) => {
 				const store = getStore();
-				const newFavorite = { name, uid, type }; // Include a type ('person', 'planet', 'starship')
+				const newFavorite = { name, uid, type }; // Include type
 				const newFavorites = [...store.favorites, newFavorite];
 				setStore({ favorites: newFavorites });
 			  },
 			  getFavorites: (favItem) => {
 				const store = getStore();
 				store.favorites.push(favItem);
-				setStore(store);
+				setStore({ favorites: store.favorites });
 			  },
-			  removeFavorites: (name) => {
-				const store = getStore();
-				const newFavorites = store.favorites.filter(
-				  (favorite) => favorite.name !== name
-				);
-				setStore({ favorites: newFavorites });
-			  },
+			  removeFavorites: (uid, type) => {
+                const store = getStore();
+                const newFavorites = store.favorites.filter(
+                    (favorite) => favorite.uid !== uid || favorite.type !== type
+                );
+                setStore({ favorites: newFavorites });
+            },
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

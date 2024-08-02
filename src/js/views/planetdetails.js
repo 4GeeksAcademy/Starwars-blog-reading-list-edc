@@ -14,7 +14,7 @@ const {id}=useParams()
         }
         getPlanet()
         
-    },[])
+    },[id])
   return (
     <div>
       <img className="card-img-top" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="Card image cap" style={{ width: "30rem", height: "48rem" }}/>

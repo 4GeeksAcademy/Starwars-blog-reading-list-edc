@@ -1,3 +1,6 @@
 /* 
     General Styles
 */
+.fa-trash-can:hover {
+    color: #cc0020;
+}

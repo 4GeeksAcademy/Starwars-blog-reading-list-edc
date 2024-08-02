@@ -14,7 +14,7 @@ export default function Characterdetails() {
     }
     getCharacter()
 
-  }, [])
+  }, [id])
   return (
     <div className="container">
       <div className="col-6">
